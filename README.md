@@ -1,6 +1,6 @@
 # Samobranovo
 
-Samobranovo - news in the assortment / Самобраново - новости в ассортименте
+Samobranovo - custom news / Самобраново - отборные новости
 
 ## Requirements
 
