@@ -8,7 +8,7 @@ sudo sed -i 's/usr\/local\/sbin/opt\/firebird\/bin\:\/usr\/local\/sbin/g' /etc/s
 source /etc/environment
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -yq
-sudo DEBIAN_FRONTEND=noninteractive apt install -y build-essential libssl-dev libffi-dev python3-dev python3-pip python3-venv tmux
+sudo DEBIAN_FRONTEND=noninteractive apt install -y build-essential libssl-dev libffi-dev python3-dev python3-pip python3-venv tmux btfs
 python3 -m venv venv
 source venv/bin/activate
 pip3 install feedparser fdb

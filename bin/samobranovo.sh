@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Samobranovo - news in the assortment / Самобраново - новости в ассортименте"
+echo "Samobranovo - custom news / Самобраново - отборные новости"
 
 cd $SAMOBRANOVO
 source venv/bin/activate
