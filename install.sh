@@ -21,8 +21,8 @@ else
 fi
 tar xvzf temp/firebird.tar.gz -C temp
 sudo DEBIAN_FRONTEND=noninteractive apt install -y libtommath-dev
-cd temp && find . -type d -name "Firebird*" -exec mv {} firebird \; && cd ..
-cd temp/firebird
+cd temp && find . -type d -name "Firebird*" -exec mv {} firebird \;
+cd firebird
 echo "vm.max_map_count = 256000" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p /etc/sysctl.conf
 sudo ./install.sh << 'EOF'
