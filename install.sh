@@ -12,10 +12,16 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y build-essential libssl-dev li
 python3 -m venv venv
 source venv/bin/activate
 pip3 install feedparser fdb
-wget -O temp/firebird.tar.gz https://github.com/FirebirdSQL/firebird/releases/download/v5.0.0-RC2/Firebird-5.0.0.1304-RC2-linux-x64.tar.gz
+if [[ $(uname -m) == "x86_64" ]]; then
+  echo "x86_64 64-bit CPU detected"
+  wget -O temp/firebird.tar.gz https://github.com/FirebirdSQL/firebird/releases/download/v5.0.0-RC2/Firebird-5.0.0.1304-RC2-linux-x64.tar.gz
+else
+  echo "ARM 64-bit CPU detected"
+  wget -O temp/firebird.tar.gz https://github.com/FirebirdSQL/firebird/releases/download/v5.0.0-RC2/Firebird-5.0.0.1304-RC2-linux-arm64.tar.gz
+fi
 tar xvzf temp/firebird.tar.gz -C temp
 sudo DEBIAN_FRONTEND=noninteractive apt install -y libtommath-dev
-mv temp/Firebird-5.0.0.1304-RC2-linux-x64 temp/firebird
+cd temp && find . -type d -name "Firebird*" -exec mv {} firebird \; && cd ..
 cd temp/firebird
 echo "vm.max_map_count = 256000" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p /etc/sysctl.conf
@@ -26,7 +32,13 @@ EOF
 sudo usermod -a -G firebird $USER
 cd $SAMOBRANOVO
 
-wget -O temp/go.tar.gz https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+if [[ $(uname -m) == "x86_64" ]]; then
+  echo "x86_64 64-bit CPU detected"
+  wget -O temp/go.tar.gz https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+else
+  echo "ARM 64-bit CPU detected"
+  wget -O temp/firebird.tar.gz https://go.dev/dl/go1.21.5.linux-arm64.tar.gz
+fi
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf temp/go.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
