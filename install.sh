@@ -4,6 +4,7 @@ mkdir temp apps
 sudo chmod 777 data
 echo PATH="$PATH:/home/$USER/.local/bin:/opt/firebird/bin:/usr/local/go/bin:$PWD/bin" | sudo tee /etc/environment
 echo SAMOBRANOVO="$PWD" | sudo tee -a /etc/environment
+echo IPFS_PATH="/opt/samobranovo/data/.ipfs" | sudo tee -a /etc/environment
 sudo sed -i 's/usr\/local\/sbin/opt\/firebird\/bin\:\/usr\/local\/sbin/g' /etc/sudoers
 source /etc/environment
 sudo apt update
