@@ -51,7 +51,7 @@ cd $SAMOBRANOVO
 cp ~/go/bin/* bin/
 
 export IPFS_PATH=/opt/samobranovo/data/.ipfs
-wget -O temp/kubo.tar.gz https://github.com/ipfs/kubo/releases/download/v0.23.0/kubo_v0.23.0_linux-amd64.tar.gz
+wget -O temp/kubo.tar.gz https://github.com/ipfs/kubo/releases/download/v0.25.0/kubo_v0.25.0_linux-amd64.tar.gz
 tar xvzf temp/kubo.tar.gz -C temp
 sudo mv temp/kubo/ipfs /usr/local/bin/ipfs
 ipfs init --profile server
