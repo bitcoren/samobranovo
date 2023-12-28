@@ -49,6 +49,38 @@ go install
 cd $SAMOBRANOVO
 cp ~/go/bin/* bin/
 
+export IPFS_PATH=/opt/samobranovo/data/.ipfs
+wget -O temp/kubo.tar.gz https://github.com/ipfs/kubo/releases/download/v0.23.0/kubo_v0.23.0_linux-amd64.tar.gz
+tar xvzf temp/kubo.tar.gz -C temp
+sudo mv temp/kubo/ipfs /usr/local/bin/ipfs
+ipfs init --profile server
+ipfs config --json Experimental.FilestoreEnabled true
+ipfs config --json Pubsub.Enabled true
+ipfs config --json Ipns.UsePubsub true
+echo -e "\
+[Unit]\n\
+Description=InterPlanetary File System (IPFS) daemon\n\
+Documentation=https://docs.ipfs.tech/\n\
+After=network.target\n\
+\n\
+[Service]\n\
+MemorySwapMax=0\n\
+TimeoutStartSec=infinity\n\
+Type=notify\n\
+User=$USER\n\
+Group=$USER\n\
+Environment=IPFS_PATH=/opt/samobranovo/data/.ipfs\n\
+ExecStart=/usr/local/bin/ipfs daemon --enable-gc\n\
+Restart=on-failure\n\
+KillSignal=SIGINT\n\
+\n\
+[Install]\n\
+WantedBy=default.target\n\
+" | sudo tee /etc/systemd/system/ipfs.service
+sudo systemctl daemon-reload
+sudo systemctl enable ipfs
+sudo systemctl start ipfs
+
 sleep 9
 rm -rf temp
 mkdir temp
