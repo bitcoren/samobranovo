@@ -4,7 +4,7 @@ Samobranovo - custom news / Самобраново - отборные новос
 
 ## Requirements
 
-x86-64/ARM64; Ubuntu Sever 24.04; 1 Core; 2 GB RAM; 10 Mbit/s WAN; Open ports: 4001
+x86-64/ARM64; Ubuntu Sever 24.04; 1 Core; 2 GB RAM; 20 GB SSD; 10 Mbit/s WAN; Open ports: 4001
 
 ## Installation
 
