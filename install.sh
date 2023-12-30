@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-cd /opt && sudo mkdir samobranovo && sudo chmod 777 samobranovo && sudo chown $USER:$USER samobranovo
 current_dir=$(pwd)
 if [ "$current_dir" != "/opt/samobranovo" ]; then
     echo "Current directory is not /opt/samobranovo, moving..."
+    cd /opt && sudo mkdir samobranovo && sudo chmod 777 samobranovo && sudo chown $USER:$USER samobranovo
     mv $current_dir /opt/samobranovo
 else
     echo "Already in /opt/samobranovo"
