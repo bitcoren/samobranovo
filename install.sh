@@ -82,6 +82,27 @@ sudo systemctl daemon-reload
 sudo systemctl enable ipfs
 sudo systemctl start ipfs
 
+echo -e "\
+[Unit]\n\
+Description=InterPlanetary File System (IPFS) subscription\n\
+After=ipfs.target\n\
+\n\
+[Service]\n\
+Type=simple\n\
+User=$USER\n\
+Group=$USER\n\
+Environment=IPFS_PATH=/opt/samobranovo/data/.ipfs\n\
+ExecStart=/opt/samobranovo/bin/ipfssub.sh\n\
+Restart=on-failure\n\
+KillSignal=SIGINT\n\
+\n\
+[Install]\n\
+WantedBy=default.target\n\
+" | sudo tee /etc/systemd/system/ipfssub.service
+sudo systemctl daemon-reload
+sudo systemctl enable ipfssub
+sudo systemctl restart ipfssub
+
 sleep 9
 rm -rf temp
 mkdir temp
