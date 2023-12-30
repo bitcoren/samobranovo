@@ -9,6 +9,7 @@ else
     echo "Already in /opt/samobranovo"
 fi
 
+cd /opt/samobranovo
 mkdir temp apps
 sudo chmod 777 data
 echo PATH="$PATH:/home/$USER/.local/bin:/opt/firebird/bin:/usr/local/go/bin:$PWD/bin" | sudo tee /etc/environment
