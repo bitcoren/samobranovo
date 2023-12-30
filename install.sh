@@ -112,6 +112,7 @@ WantedBy=default.target\n\
 sudo systemctl daemon-reload
 sudo systemctl enable ipfssub
 sudo systemctl restart ipfssub
+sleep 9
 
 (echo -n "$(date) Samobranovo system is installed, ID=" && IPFSID=$(ipfs id| grep \"ID\":) | echo $IPFSID | cut -c8-59) >> /opt/samobranovo/data/log.txt
 ipfspub 'Initial message'
