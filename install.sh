@@ -114,7 +114,7 @@ sudo systemctl enable ipfssub
 sudo systemctl restart ipfssub
 
 (echo -n "$(date) Samobranovo system is installed, ID=" && IPFSID=$(ipfs id| grep \"ID\":) | echo $IPFSID | cut -c8-59) >> /opt/samobranovo/data/log.txt
-ipfspub Initial message
+ipfspub 'Initial message'
 ipfs pubsub pub samobranovo /opt/samobranovo/data/log.txt
 
 sleep 9
