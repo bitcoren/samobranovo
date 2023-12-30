@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+cd /opt && sudo mkdir samobranovo && sudo chmod 777 samobranovo && sudo chown $USER:$USER samobranovo
+current_dir=$(pwd)
+if [ "$current_dir" != "/opt/samobranovo" ]; then
+    echo "Current directory is not /opt/samobranovo, moving..."
+    mv $current_dir /opt/samobranovo
+else
+    echo "Already in /opt/samobranovo"
+fi
+
 mkdir temp apps
 sudo chmod 777 data
 echo PATH="$PATH:/home/$USER/.local/bin:/opt/firebird/bin:/usr/local/go/bin:$PWD/bin" | sudo tee /etc/environment
@@ -102,6 +111,9 @@ WantedBy=default.target\n\
 sudo systemctl daemon-reload
 sudo systemctl enable ipfssub
 sudo systemctl restart ipfssub
+
+(echo -n "$(date) Samobranovo system is installed, ID=" && IPFSID=$(ipfs id| grep \"ID\":) | echo $IPFSID | cut -c8-59) >> /opt/samobranovo/data/log.txt
+ipfs pubsub pub samobranovo /opt/samobranovo/data/log.txt
 
 sleep 9
 rm -rf temp
