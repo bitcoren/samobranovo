@@ -21,6 +21,9 @@ sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -yq
 sudo DEBIAN_FRONTEND=noninteractive apt install -y docker.io docker-compose-v2 build-essential libssl-dev libffi-dev python3-dev python3-pip python3-venv tmux
 sudo usermod -aG docker $USER
+sudo grpconv
+newgrp docker
+docker run hello-world
 python3 -m venv venv
 source venv/bin/activate
 pip3 install feedparser fdb
