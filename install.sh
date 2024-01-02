@@ -120,7 +120,7 @@ str=$(ipfs id) && echo $str | cut -c10-61 > /opt/samobranovo/data/id.txt
 ipfspub 'Initial message'
 ipfs pubsub pub samobranovo /opt/samobranovo/data/log.txt
 
-echo -e "@reboot echo \"\$(date) System is rebooted\" >> /opt/samobranovo/data/log.txt\n* * * * * su -c \"bash /opt/samobranovo/bin/cron.sh\"" | sudo crontab -
+echo -e "@reboot echo \"\$(date) System is rebooted\" >> /opt/samobranovo/data/log.txt\n* * * * * su $USER -c \"bash /opt/samobranovo/bin/cron.sh\"" | sudo crontab -
 echo -e "\
 #!/usr/bin/env bash\n\
 \n\
