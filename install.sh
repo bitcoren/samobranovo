@@ -21,7 +21,6 @@ sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -yq
 sudo DEBIAN_FRONTEND=noninteractive apt install -y docker.io docker-compose-v2 build-essential libssl-dev libffi-dev python3-dev python3-pip python3-venv tmux
 sudo usermod -aG docker $USER
-sg bitcoren "sudo grpconv && newgrp docker && docker run hello-world"
 python3 -m venv venv
 source venv/bin/activate
 pip3 install feedparser fdb
@@ -120,6 +119,12 @@ str=$(ipfs id) && echo $str | cut -c10-61 > /opt/samobranovo/data/id.txt
 (echo -n "$(date) Samobranovo system is installed. ID=" && cat /opt/samobranovo/data/id.txt) >> /opt/samobranovo/data/log.txt
 ipfspub 'Initial message'
 ipfs pubsub pub samobranovo /opt/samobranovo/data/log.txt
+
+echo -e "@reboot echo \"\$(date) System is rebooted\" >> /opt/samobranovo/data/log.txt\n* * * * * su -c \"bash /opt/samobranovo/bin/cron.sh\"" | sudo crontab -
+echo -e "\
+#!/usr/bin/env bash\n\
+\n\
+" | sudo tee /opt/samobranovo/bin/cron.sh
 
 sleep 9
 rm -rf temp
