@@ -96,13 +96,14 @@ sudo systemctl start ipfs
 echo -e "\
 [Unit]\n\
 Description=InterPlanetary File System (IPFS) subscription\n\
-After=ipfs.target\n\
+After=network.target\n\
 \n\
 [Service]\n\
 Type=simple\n\
 User=$USER\n\
 Group=$USER\n\
 Environment=IPFS_PATH=/opt/samobranovo/data/.ipfs\n\
+ExecStartPre=/usr/bin/sleep 9\n\
 ExecStart=/opt/samobranovo/bin/ipfssub.sh\n\
 Restart=on-failure\n\
 KillSignal=SIGINT\n\
