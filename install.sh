@@ -49,7 +49,7 @@ if [[ $(uname -m) == "x86_64" ]]; then
   wget -O temp/go.tar.gz https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
 else
   echo "ARM 64-bit CPU detected"
-  wget -O temp/firebird.tar.gz https://go.dev/dl/go1.21.5.linux-arm64.tar.gz
+  wget -O temp/go.tar.gz https://go.dev/dl/go1.21.5.linux-arm64.tar.gz
 fi
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf temp/go.tar.gz
 export PATH=$PATH:/usr/local/go/bin
