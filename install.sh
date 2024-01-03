@@ -62,7 +62,13 @@ cd $SAMOBRANOVO
 cp ~/go/bin/* bin/
 
 export IPFS_PATH=/opt/samobranovo/data/.ipfs
-wget -O temp/kubo.tar.gz https://github.com/ipfs/kubo/releases/download/v0.25.0/kubo_v0.25.0_linux-amd64.tar.gz
+if [[ $(uname -m) == "x86_64" ]]; then
+  echo "x86_64 64-bit CPU detected"
+  wget -O temp/kubo.tar.gz https://github.com/ipfs/kubo/releases/download/v0.25.0/kubo_v0.25.0_linux-amd64.tar.gz
+else
+  echo "ARM 64-bit CPU detected"
+  wget -O temp/kubo.tar.gz https://github.com/ipfs/kubo/releases/download/v0.25.0/kubo_v0.25.0_linux-arm64.tar.gz
+fi
 tar xvzf temp/kubo.tar.gz -C temp
 sudo mv temp/kubo/ipfs /usr/local/bin/ipfs
 ipfs init --profile server
