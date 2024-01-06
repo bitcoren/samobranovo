@@ -120,7 +120,7 @@ WantedBy=default.target\n\
 sudo systemctl daemon-reload
 sudo systemctl enable ipfssub
 sudo systemctl restart ipfssub
-sleep 9
+sleep 29
 
 str=$(ipfs id) && echo $str | cut -c10-61 > /opt/samobranovo/data/id.txt
 (echo -n "$(date) Samobranovo system is installed. ID=" && cat /opt/samobranovo/data/id.txt) >> /opt/samobranovo/data/log.txt
